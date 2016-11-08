@@ -7,13 +7,17 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 
-public class Cat extends Animal{
+public class Mouse extends Animal{
 
-	Cat(Context context) {
-		super(context, R.drawable.cat);
+	Mouse(Context context) {
+		super(context, R.drawable.mouse);
 	}
 
-	Cat(float x, float y, float size, Context context) {
-		super(x, y, size, context, R.drawable.cat);
+	Mouse(float x, float y, float size, Context context) {
+	    super(x, y, size, context, R.drawable.mouse);
+	}
+    void move()
+	{
+		pos.x += 2;
 	}
 }
