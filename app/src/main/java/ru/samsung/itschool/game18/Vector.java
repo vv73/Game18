@@ -1,47 +1,54 @@
 package ru.samsung.itschool.game18;
 
 public class Vector {
-	float x, y;
 
-	public void print() {
-		System.out.println("(" + x + ", " + y + ")");
-	}
+    float x, y;
 
-	public String toString() {
-		return "(" + x + "; " + y + ")";
-	}
+  public Vector(Vector v) {
+		this.x = v.x;
+        this.y = v.y;
+    }
 
-	public void sum(Vector v) {
-		this.x += v.x;
-		this.y += v.y;
-	}
+    Vector(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
 
-	public void mul(float k) {
-		x *= k;
-		y *= k;
-	}
+    Vector() {
+        this.x = 0;
+        this.y = 0;
+    }
 
-	void set(float x, float y) {
-		this.x = x;
-		this.y = y;
-	}
+    public static void main(String argS[]) {
+        // System.out.println(v);
 
-	Vector(float x, float y) {
-		this.x = x;
-		this.y = y;
-	}
+    }
 
-	Vector() {
-		this.x = 0;
-		this.y = 0;
-	}
+    public void print() {
+        System.out.println("(" + x + ", " + y + ")");
+    }
 
-	static Vector v;
+    public String toString() {
+        return "(" + x + "; " + y + ")";
+    }
 
-	public static void main(String argS[]) {
-		// System.out.println(v);
+    public void sum(Vector v) {
+        this.x += v.x;
+        this.y += v.y;
+    }
 
-		System.out.println(v.v);
-		v.print();
-	}
+    public void sub(Vector v) {
+        this.x -= v.x;
+        this.y -= v.y;
+    }
+
+    public void mul(float k) {
+        x *= k;
+        y *= k;
+    }
+
+    void set(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
 }

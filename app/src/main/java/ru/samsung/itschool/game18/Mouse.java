@@ -8,7 +8,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 
 public class Mouse extends Animal{
-
+    Vector toGo = new Vector(500, 500);
 	Mouse(Context context) {
 		super(context, R.drawable.mouse);
 	}
@@ -16,8 +16,16 @@ public class Mouse extends Animal{
 	Mouse(float x, float y, float size, Context context) {
 	    super(x, y, size, context, R.drawable.mouse);
 	}
+
+	void please (float x, float y)
+	{
+		toGo.set(x, y);
+	}
     void move()
 	{
-		pos.x += 2;
+		Vector velocity = new Vector(toGo);
+		velocity.sub(pos);
+		velocity.mul((float)(Math.random()/5));
+		pos.sum(velocity);
 	}
 }
