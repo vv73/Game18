@@ -3,6 +3,7 @@ package ru.samsung.itschool.game18;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.View;
 
 public class MyDraw extends View{
@@ -26,10 +27,10 @@ public class MyDraw extends View{
 		mouseOne.move();
 		mouseOne.appear(canvas);
 		this.invalidate();
-		
-		
 	}
-	
-	
 
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		return false;
+	}
 }
