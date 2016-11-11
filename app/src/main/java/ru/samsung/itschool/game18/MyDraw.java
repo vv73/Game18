@@ -25,7 +25,7 @@ public class MyDraw extends View{
 		catOne.appear(canvas);
 		mouseOne.move();
 		mouseOne.appear(canvas);
-		if (!stop) this.invalidate();
+		this.invalidate();
 		
 		
 	}
