@@ -70,7 +70,7 @@ public class MyDraw extends View implements SeekBar.OnSeekBarChangeListener{
 	public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 		for (Animal m : animals)
 		{
-			if (animals[i] instanceof Mouse) ((Mouse)m).size = i/20f;
+			if (m instanceof Mouse) ((Mouse)m).size = 50* (i + 100f)/100;
 		}
 	}
 
