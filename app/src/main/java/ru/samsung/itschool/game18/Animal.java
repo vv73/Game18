@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 public class Animal {
     Vector pos;
@@ -27,9 +28,10 @@ public class Animal {
     }
     Paint paint = new Paint();
     void appear(Canvas canvas) {
-        Matrix m = new Matrix();
-        m.postScale(size, size);
-        m.postTranslate(pos.x, pos.y);
-        canvas.drawBitmap(pic, m, paint);
+        float k = (float)pic.getHeight()/pic.getWidth();
+        RectF rect = new RectF(pos.x, pos.y,
+                pos.x + size, pos.y + size * k );
+
+        canvas.drawBitmap(pic, null, rect, paint);
     }
 }

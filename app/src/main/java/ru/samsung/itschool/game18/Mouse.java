@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 
-public class Mouse extends Animal{
+public class Mouse extends Animal implements OnTouch{
     Vector toGo = new Vector(500, 500);
 	Mouse(Context context) {
 		super(context, R.drawable.mouse);
@@ -17,7 +17,7 @@ public class Mouse extends Animal{
 	    super(x, y, size, context, R.drawable.mouse);
 	}
 
-	void please (float x, float y)
+	public void onTouch (float x, float y)
 	{
 		toGo.set(x, y);
 	}

@@ -15,11 +15,15 @@ public class MyDraw extends View implements SeekBar.OnSeekBarChangeListener{
 	void init(Context context)
 	{
 		v = new Vector(30, 100);
-		mouse = new Mouse[50];
+		animals = new Animal[51];
 
-		catOne = new Cat(30, 150, 2, context);
-		for (int i = 0; i < mouse.length; i++) {
-			mouse[i] = new Mouse((float) (Math.random() * 500), (float) (Math.random() * 500), 0.1f, context);
+		for (int i = 0; i < 3; i++)
+		    animals[i] = new Cat(30, (float)Math.random()* 300, (float)Math.random()* 300, context);
+		for (int i = 3; i < animals.length; i++) {
+			animals[i] = new Mouse(
+					(float) (Math.random() * 500),
+					(float) (Math.random() * 500), 100,
+					context);
 		}
 
 	}
@@ -28,8 +32,9 @@ public class MyDraw extends View implements SeekBar.OnSeekBarChangeListener{
 		init(context);
 	}
 	Paint paint = new Paint();
-	Cat catOne;
-	Mouse[] mouse;
+
+
+	Animal[] animals;
 
 	public MyDraw(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -40,10 +45,10 @@ public class MyDraw extends View implements SeekBar.OnSeekBarChangeListener{
 	protected void onDraw(Canvas canvas) {
 		//canvas.drawLine(0, 0, v.x, v.y, paint);
 		//canvas.drawText(v.toString(), 50, 50, paint);
-		catOne.appear(canvas);
-		for (int i = 0; i < mouse.length; i++) {
-			mouse[i].move();
-			mouse[i].appear(canvas);
+		for (int i = 0; i < animals.length; i++) {
+			if (animals[i] instanceof Mouse)
+				((Mouse)animals[i]).move();
+			animals[i].appear(canvas);
 		}
 
 		this.invalidate();
@@ -52,17 +57,20 @@ public class MyDraw extends View implements SeekBar.OnSeekBarChangeListener{
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// mouseOne.toGo.set();
-		for (int i = 0; i < mouse.length; i++) {
-			mouse[i].please(event.getX(), event.getY());
+		float x = event.getX();
+		float y = event.getY();
+		for (int i = 0; i < animals.length; i++) {
+			if (animals[i] instanceof OnTouch)
+				((OnTouch)animals[i]).onTouch(x, y);
 		}
 		return false;
 	}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-		for (Mouse m : mouse)
+		for (Animal m : animals)
 		{
-			m.size = i/20f;
+			if (animals[i] instanceof Mouse) ((Mouse)m).size = i/20f;
 		}
 	}
 
