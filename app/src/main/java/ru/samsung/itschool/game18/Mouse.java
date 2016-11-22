@@ -21,6 +21,7 @@ public class Mouse extends Animal{
 	{
 		toGo.set(x, y);
 	}
+
     void move()
 	{
 		Vector velocity = new Vector(toGo);

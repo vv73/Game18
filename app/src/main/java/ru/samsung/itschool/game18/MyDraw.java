@@ -3,14 +3,17 @@ package ru.samsung.itschool.game18;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.SeekBar;
 
-public class MyDraw extends View{
+public class MyDraw extends View implements SeekBar.OnSeekBarChangeListener{
 
 	Vector v;
-	public MyDraw(Context context) {
-		super(context);
+
+	void init(Context context)
+	{
 		v = new Vector(30, 100);
 		mouse = new Mouse[50];
 
@@ -18,10 +21,21 @@ public class MyDraw extends View{
 		for (int i = 0; i < mouse.length; i++) {
 			mouse[i] = new Mouse((float) (Math.random() * 500), (float) (Math.random() * 500), 0.1f, context);
 		}
+
+	}
+	public MyDraw(Context context) {
+		super(context);
+		init(context);
 	}
 	Paint paint = new Paint();
 	Cat catOne;
 	Mouse[] mouse;
+
+	public MyDraw(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init(context);
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		//canvas.drawLine(0, 0, v.x, v.y, paint);
@@ -42,5 +56,23 @@ public class MyDraw extends View{
 			mouse[i].please(event.getX(), event.getY());
 		}
 		return false;
+	}
+
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+		for (Mouse m : mouse)
+		{
+			m.size = i/20f;
+		}
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+
 	}
 }
